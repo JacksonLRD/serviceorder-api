@@ -1,0 +1,19 @@
+{
+  /* Visit https://aka.ms/tsconfig.json to read more about this file */
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "es2017",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true
+  }
+}
