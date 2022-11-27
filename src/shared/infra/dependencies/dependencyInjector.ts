@@ -2,6 +2,7 @@
 
 // inicializa services
 import '../../../modules/users/services/CreateUserService';
+import '../../../modules/users/services/UserAuthenticationService';
 // import '../../../services/CreateVehicleService';
 // import '../../../services/FindVehicleService';
 // import '../../../services/RemoveVehicleService';
