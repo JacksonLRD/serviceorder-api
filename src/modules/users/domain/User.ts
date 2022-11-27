@@ -3,7 +3,7 @@ export default class User {
     public name: string,
     public email: string,
     public password: string,
-    public active: boolean,
+    public active?: boolean,
     public role?: 'ADMIN' | 'TECHNICIAN',
     public id?: string,
     public createdAt?: string,

@@ -1,13 +1,15 @@
 import { model, Schema } from 'mongoose';
 import { v4 } from 'uuid';
 
+type Role = 'ADMIN' | 'TECHNICIAN';
+
 export interface IUser {
   _id?: string;
   name: string;
   email: string;
-  password?: string;
+  password: string;
   active?: boolean;
-  role?: string;
+  role?: Role;
   createdAt?: string;
   updatedAt?: string;
 }
