@@ -1,5 +1,4 @@
-import { Service } from 'typedi';
-import { Inject } from 'typedi/types/decorators/inject.decorator';
+import { Inject, Service } from 'typedi';
 import AppError from '../../../shared/errors/AppError';
 import User from '../domain/User';
 import createUserSchema from '../infra/joiSchemas/createUserSchema';
@@ -21,7 +20,7 @@ export default class CreateUserService implements ICreateUserService {
     const user = await this.userRepository.findByEmail(email);
     if (user) throw new AppError('Email address already used', 422);
 
-    const hashedPassword = await hashProvider.generateHash(password);
+    const hashedPassword = await hashProvider().generateHash(password);
 
     return this.userRepository.save({
       name,

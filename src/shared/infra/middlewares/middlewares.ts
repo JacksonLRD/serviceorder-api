@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { env } from 'process';
+
 import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';

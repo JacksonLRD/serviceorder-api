@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import '../infra/dependencies/dependencyInjector';
 import 'dotenv/config';
 import { env } from 'process';
+
 import express from 'express';
 
 import createMiddlewares from '../infra/middlewares/middlewares';

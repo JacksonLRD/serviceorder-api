@@ -5,7 +5,7 @@ import AppError from '../../../../shared/errors/AppError';
 
 const hashProvider = () => {
   const { CRYPTO_ALGORITHM, SECRET } = env;
-  if (!CRYPTO_ALGORITHM || !SECRET) throw new AppError(ENVS_NOT_DEFINED, 500);
+  if (!CRYPTO_ALGORITHM || !SECRET) throw new AppError(ENVS_NOT_DEFINED, 400);
 
   const self = {
     generateHash: async (password: string): Promise<string> => {
@@ -20,4 +20,4 @@ const hashProvider = () => {
   return self;
 };
 
-export default hashProvider();
+export default hashProvider;

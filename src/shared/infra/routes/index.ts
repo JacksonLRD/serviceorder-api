@@ -3,6 +3,6 @@ import userRouter from './user.routes';
 
 const routes = express();
 
-routes.use('/vehicles', userRouter);
+routes.use('/users', userRouter);
 
 export default routes;
