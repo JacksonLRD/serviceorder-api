@@ -14,9 +14,9 @@ export default class UserRepository implements IUserRepository {
   }
 
   public async findByEmail(email: string): Promise<User | null> {
-    const foundUser = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email });
 
-    if (foundUser === null) return null;
-    return UserMapper.toDomain(foundUser);
+    if (user === null) return null;
+    return UserMapper.toDomain(user);
   }
 }

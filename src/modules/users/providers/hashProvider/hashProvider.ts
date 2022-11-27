@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { createHmac } from 'node:crypto';
 import { env } from 'process';
 import { ENVS_NOT_DEFINED } from '../../../../shared/constants/envConstants';
@@ -7,7 +8,7 @@ const hashProvider = () => {
   const { CRYPTO_ALGORITHM, SECRET } = env;
   if (!CRYPTO_ALGORITHM || !SECRET) throw new AppError(ENVS_NOT_DEFINED, 400);
 
-  const self = {
+  return {
     generateHash: async (password: string): Promise<string> => {
       return createHmac(CRYPTO_ALGORITHM, SECRET).update(password).digest('hex');
     },
@@ -17,7 +18,6 @@ const hashProvider = () => {
       return hashToCompare === hash ? true : false;
     },
   };
-  return self;
 };
 
-export default hashProvider;
+export default hashProvider();
