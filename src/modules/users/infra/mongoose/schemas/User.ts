@@ -1,7 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { v4 } from 'uuid';
-
-type Role = 'ADMIN' | 'TECHNICIAN';
+import { RoleEnum } from '../../../Enums/RoleEnum';
 
 export interface IUser {
   _id?: string;
@@ -9,7 +8,7 @@ export interface IUser {
   email: string;
   password: string;
   active?: boolean;
-  role?: Role;
+  role?: RoleEnum;
   createdAt?: string;
   updatedAt?: string;
 }

@@ -8,14 +8,13 @@ export default class UserController {
     try {
       const createUserService = Container.get<ICreateUserService>('CreateUserService');
 
-      const userData = req.body;
-      const user = await createUserService.execute(userData);
+      const user = await createUserService.execute(req.body);
 
       return res.status(201).json(user);
     } catch (error) {
       if (error instanceof AppError) throw error;
 
-      console.error(error);
+      console.error('Error:', error);
       throw new AppError('Internal Server Error', 500);
     }
   }
