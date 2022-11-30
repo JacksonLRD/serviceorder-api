@@ -1,0 +1,257 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "description": "Sistema para criação de ordens de serviços",
+    "version": "0.0.1",
+    "title": "Service Order API",
+    "contact": {
+      "email": "jacksonlrdsantos@gmail.com"
+    }
+  },
+  "paths": {
+    "/vehicles": {
+      "get": {
+        "tags": ["Vehicles"],
+        "description": "Returns all vehicles",
+        "summary": "List all vehicles",
+        "responses": {
+          "200": {
+            "description": "Vehicle response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Vehicle"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/vehicles/{id}": {
+      "get": {
+        "tags": ["Vehicles"],
+        "description": "Returns a vehicle based on ID",
+        "summary": "Find vehicle by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of vehicle to use",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vehicle response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create a new user",
+        "summary": "Save a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Vehicle response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/vehicles/update/{id}": {
+      "patch": {
+        "tags": ["Vehicles"],
+        "description": "Updates a vehicle",
+        "summary": "Partially update vehicle by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of vehicle to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVehicleDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vehicle response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vehicle"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/vehicles/remove/{id}": {
+      "delete": {
+        "tags": ["Vehicles"],
+        "description": "Delete a vehicle",
+        "summary": "Delete a vehicle by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of vehicle to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vehicle deleted!"
+          },
+
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Vehicle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "placa": {
+            "type": "string",
+            "nullable": true,
+            "single": true
+          },
+          "chassi": {
+            "type": "string",
+            "required": true,
+            "single": true
+          },
+          "renavam": {
+            "type": "string",
+            "nullable": true,
+            "single": true
+          },
+          "modelo": {
+            "type": "string",
+            "required": true
+          },
+          "marca": {
+            "type": "string",
+            "required": true
+          },
+          "ano": {
+            "type": "number",
+            "required": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateUserDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "single": true
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "role": {
+            "description": "Se não for colocado uma ROLE, ela fica por padrão o TECHNICIAN",
+            "type": "string",
+            "enum": ["ADMIN", "TECHNICIAN"]
+          },
+          "active": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": ["name", "email", "password"],
+        "additionalProperties": false
+      },
+      "UpdateVehicleDTO": {
+        "type": "object",
+        "properties": {
+          "placa": {
+            "type": "string",
+            "nullable": true,
+            "single": true
+          },
+          "renavam": {
+            "type": "string",
+            "nullable": true,
+            "single": true
+          }
+        },
+        "required": ["placa", "renavam"],
+        "additionalProperties": false
+      }
+    }
+  }
+}
